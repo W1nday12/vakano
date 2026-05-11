@@ -1,0 +1,1528 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ВАКАНО — История. Гастрономия. Искусство</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0D0C0A;
+    --bg-2: #14120F;
+    --bg-3: #1C1915;
+    --line: #2A251D;
+    --text: #EDE4D3;
+    --text-dim: #8A8274;
+    --text-mute: #5A5347;
+    --gold: #C9A962;
+    --gold-2: #E3C98A;
+    --gold-deep: #8B7034;
+    --accent: var(--gold);
+    --serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+    --serif-alt: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* —— Layout grid —— */
+  .wrap {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  @media (max-width: 720px) { .wrap { padding: 0 22px; } }
+
+  /* —— Thin gold divider —— */
+  .rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-deep) 20%, var(--gold-deep) 80%, transparent);
+    opacity: 0.55;
+  }
+  .rule-dot::before,
+  .rule-dot::after { content: ""; display:inline-block; width:4px; height:4px; background:var(--gold); border-radius:50%; vertical-align: middle; margin: 0 10px; }
+
+  /* —— Eyebrow label —— */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .eyebrow.no-line::before { display:none; }
+
+  /* —— Display type —— */
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; margin: 0; letter-spacing: -0.01em; }
+  h1 .italic, h2 .italic, h3 .italic { font-style: italic; color: var(--gold-2); font-weight: 400; }
+
+  /* —— Buttons —— */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 26px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold-2);
+    transition: all 220ms ease;
+    border-radius: 0;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--gold); color: var(--bg); }
+  .btn:hover .btn-arrow { transform: translateX(4px); }
+  .btn .btn-arrow { display:inline-block; transition: transform 220ms ease; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--bg);
+  }
+  .btn-primary:hover { background: var(--gold-2); color: var(--bg); }
+  .btn-ghost {
+    border-color: var(--line);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: transparent; color: var(--gold-2); }
+  .btn-sm { padding: 11px 18px; font-size: 11px; }
+
+  /* —— Header —— */
+  header.site {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    background: rgba(13, 12, 10, 0.55);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+    border-bottom: 1px solid rgba(201, 169, 98, 0.12);
+    transition: background 220ms ease;
+  }
+  header.site.scrolled { background: rgba(13, 12, 10, 0.85); }
+  .hdr-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 18px 0;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 14px;
+    cursor: pointer;
+  }
+  .logo-mark {
+    width: 40px; height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--gold-2);
+    font-style: italic;
+    position: relative;
+  }
+  .logo-mark::before {
+    content:"";
+    position:absolute; inset: 3px;
+    border: 1px solid rgba(201, 169, 98, 0.28);
+    border-radius: 50%;
+  }
+  .logo-text {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .logo-text .nm {
+    font-family: var(--serif);
+    font-size: 19px;
+    letter-spacing: 0.32em;
+    color: var(--text);
+  }
+  .logo-text .sub {
+    margin-top: 5px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: var(--text-mute);
+    text-transform: uppercase;
+  }
+  nav.primary {
+    display: flex; gap: 34px; justify-content: center;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+  nav.primary a {
+    color: var(--text-dim);
+    position: relative;
+    padding: 6px 0;
+    transition: color 200ms ease;
+  }
+  nav.primary a:hover { color: var(--text); }
+  nav.primary a::after {
+    content:"";
+    position:absolute; left:50%; right:50%; bottom:0;
+    height: 1px; background: var(--gold);
+    transition: all 200ms ease;
+  }
+  nav.primary a:hover::after { left:0; right:0; }
+  .hdr-right { display: flex; gap: 14px; align-items: center; }
+  .hdr-phone {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 980px) {
+    nav.primary { display: none; }
+    .hdr-phone { display: none; }
+  }
+
+  /* —— Hero —— */
+  section.hero {
+    position: relative;
+    padding: 180px 0 120px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201, 169, 98, 0.10), transparent 60%),
+      radial-gradient(ellipse 100% 50% at 50% 100%, rgba(201, 169, 98, 0.06), transparent 60%),
+      linear-gradient(180deg, var(--bg), var(--bg));
+  }
+  .hero-grain {
+    position: absolute; inset: 0;
+    z-index: 1;
+    opacity: 0.22;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.66 0 0 0 0 0.38 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .hero-lines {
+    position: absolute; inset: 0; z-index: 1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(90deg, rgba(201,169,98,0.08) 1px, transparent 1px);
+    background-size: 25% 100%;
+    opacity: 0.4;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    width: 100%;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-left {
+    display:flex; flex-direction: column; gap: 18px;
+  }
+  .hero-coord {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+  .hero-coord span strong {
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-right: 6px;
+  }
+  .hero-title {
+    font-size: clamp(56px, 11vw, 180px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .hero-title .word { display: block; }
+  .hero-title .amp {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold);
+    padding: 0 12px;
+    font-weight: 400;
+  }
+  .hero-sub {
+    max-width: 560px;
+    margin-top: 42px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .hero-ctas {
+    margin-top: 44px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .hero-bottom {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+  @media (max-width: 780px) {
+    .hero-bottom { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+  }
+  .hero-stat {
+    padding-right: 20px;
+    position: relative;
+  }
+  .hero-stat:not(:last-child)::after {
+    content:"";
+    position:absolute; top: 4px; right: 0; bottom: 4px;
+    width: 1px; background: var(--line);
+  }
+  .hero-stat .k {
+    font-family: var(--serif);
+    font-size: 36px;
+    color: var(--gold-2);
+    letter-spacing: -0.01em;
+  }
+  .hero-stat .k .it { font-style: italic; }
+  .hero-stat .l {
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  /* —— Section base —— */
+  section.band { padding: 140px 0; position: relative; }
+  @media (max-width: 780px) { section.band { padding: 88px 0; } }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 72px;
+  }
+  @media (max-width: 860px) {
+    .section-head { grid-template-columns: 1fr; gap: 28px; }
+  }
+  .section-head h2 {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .section-head .lead {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.65;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .sec-idx {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-mute);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  /* —— About —— */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-card {
+    padding: 44px 32px 44px 0;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .about-card:last-child { border-right: none; }
+  @media (max-width: 860px) {
+    .about-card { padding: 32px 0; border-right: none; border-bottom: 1px solid var(--line); }
+    .about-card:last-child { border-bottom: none; }
+  }
+  .about-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 28px;
+    display: block;
+  }
+  .about-card h3 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .about-card h3 .it { font-style: italic; color: var(--gold-2); }
+  .about-card p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.65;
+    font-weight: 300;
+    margin: 0;
+    padding-right: 18px;
+  }
+  .about-glyph {
+    margin-bottom: 34px;
+    width: 44px; height: 44px;
+    border: 1px solid var(--gold-deep);
+    display: grid; place-items: center;
+    color: var(--gold-2);
+  }
+
+  /* —— Restaurant —— */
+  section.faber {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .faber-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 980px) { .faber-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .faber-vis {
+    aspect-ratio: 4 / 5;
+    background:
+      repeating-linear-gradient(135deg, rgba(201,169,98,0.06) 0 2px, transparent 2px 14px),
+      linear-gradient(180deg, #1A1713, #0E0C0A);
+    border: 1px solid var(--line);
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .faber-vis::before {
+    content:"";
+    position:absolute; inset: 20px;
+    border: 1px solid rgba(201,169,98,0.18);
+    pointer-events: none;
+  }
+  .faber-vis-inner {
+    text-align: center;
+    padding: 40px;
+  }
+  .faber-vis .mono {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .faber-vis .big {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(64px, 9vw, 128px);
+    color: var(--gold-2);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .faber-vis .cap {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-mute);
+  }
+  .faber-vis .cap::before, .faber-vis .cap::after { content:"— "; color: var(--gold-deep);}
+  .faber-vis .cap::after { content:" —"; }
+  .faber-right h3 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1;
+    margin-bottom: 22px;
+  }
+  .faber-right .desc {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 460px;
+  }
+  .menu-list {
+    list-style: none; padding: 0; margin: 0 0 36px 0;
+    border-top: 1px solid var(--line);
+  }
+  .menu-list li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-list .dish {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--text);
+  }
+  .menu-list .dish .it { font-style: italic; color: var(--gold-2); }
+  .menu-list .dots {
+    border-bottom: 1px dotted var(--line);
+    height: 1px;
+    align-self: center;
+    margin: 0 4px;
+  }
+  .menu-list .price {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .faber-meta {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    margin-bottom: 36px;
+  }
+  .faber-meta > div .l {
+    font-family: var(--mono); font-size: 10px; color: var(--text-mute);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .faber-meta > div .v { font-family: var(--serif); font-size: 22px; color: var(--text); }
+  .faber-meta > div .v .it { font-style: italic; color: var(--gold-2); }
+  .faber-ctas { display:flex; gap: 12px; flex-wrap: wrap; }
+
+  /* —— Yard —— */
+  .yard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 980px) { .yard-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .yard-left h3 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1;
+    margin-bottom: 22px;
+  }
+  .yard-left .desc {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 26px;
+    max-width: 460px;
+  }
+  .yard-pill {
+    display: inline-flex;
+    align-items: center; gap: 10px;
+    padding: 10px 18px;
+    border: 1px solid var(--gold-deep);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-radius: 999px;
+    margin-bottom: 36px;
+  }
+  .yard-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.4 } }
+
+  .yard-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--line);
+  }
+  .yard-list .item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    padding: 22px 0;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .yard-list .num {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    color: var(--text-mute); width: 40px;
+  }
+  .yard-list .name { font-family: var(--serif); font-size: 22px; color: var(--text); }
+  .yard-list .name .it { font-style: italic; color: var(--gold-2); }
+  .yard-list .desc-s { font-family: var(--mono); font-size: 11px; color: var(--text-mute); letter-spacing: 0.06em; }
+
+  .yard-vis {
+    position: relative;
+    aspect-ratio: 5 / 4;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .yard-vis svg { display: block; width: 100%; height: 100%; }
+
+  /* —— Tours —— */
+  section.tours {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 860px) { .tours-grid { grid-template-columns: 1fr; } }
+  .tour {
+    border: 1px solid var(--line);
+    padding: 36px 32px 32px;
+    background: linear-gradient(180deg, rgba(201,169,98,0.02), transparent);
+    display: flex; flex-direction: column;
+    min-height: 380px;
+    position: relative;
+    transition: border-color 260ms ease, transform 260ms ease;
+  }
+  .tour:hover { border-color: var(--gold-deep); transform: translateY(-2px); }
+  .tour::before {
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 320ms ease;
+  }
+  .tour:hover::before { transform: scaleX(1); }
+  .tour .t-num {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.24em; color: var(--text-mute);
+    margin-bottom: 28px; text-transform: uppercase;
+  }
+  .tour h4 {
+    font-size: 30px; line-height: 1.05; margin-bottom: 14px;
+  }
+  .tour h4 .it { font-style: italic; color: var(--gold-2); }
+  .tour .t-desc {
+    font-size: 13.5px; line-height: 1.65; color: var(--text-dim);
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 28px;
+  }
+  .tour .t-price {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-top: 20px; border-top: 1px solid var(--line);
+    margin-bottom: 22px;
+  }
+  .tour .price-v { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--gold-2); }
+  .tour .price-l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--text-mute); text-transform: uppercase; }
+  .tour-btn {
+    align-self: flex-start;
+    font-family: var(--sans); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-2);
+    background: none; border: none;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--gold-deep);
+    cursor: pointer;
+    transition: color 220ms ease, border-color 220ms ease;
+  }
+  .tour-btn:hover { color: var(--gold-2); border-bottom-color: var(--gold); }
+
+  /* —— Contact —— */
+  .ct-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  @media (max-width: 980px) { .ct-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .ct-info dl { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .ct-info .row { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .ct-info dt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--text-mute); text-transform: uppercase; }
+  .ct-info dd { margin: 0; font-family: var(--serif); font-size: 21px; color: var(--text); }
+  .ct-info dd .it { font-style: italic; color: var(--gold-2); }
+  .ct-info dd a { border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color 200ms; }
+  .ct-info dd a:hover { border-bottom-color: var(--gold); }
+  .ct-info .ctas { display:flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+
+  .ct-map {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .ct-map svg { width: 100%; height: 100%; display:block; }
+  .ct-map .pin-label {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, calc(-50% + 28px));
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--gold-2);
+    background: rgba(13,12,10,0.9);
+    padding: 6px 10px;
+    border: 1px solid var(--gold-deep);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* —— Footer —— */
+  footer.site {
+    background: #080706;
+    border-top: 1px solid var(--line);
+    padding: 72px 0 36px;
+  }
+  .ft-top {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 860px) { .ft-top { grid-template-columns: 1fr 1fr; gap: 40px 24px; } }
+  .ft-block h5 {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--text-mute); margin: 0 0 20px 0; font-weight: 500;
+  }
+  .ft-block a { display: block; font-size: 14px; color: var(--text-dim); padding: 6px 0; transition: color 180ms; }
+  .ft-block a:hover { color: var(--gold-2); }
+  .ft-intro p { color: var(--text-dim); font-size: 14px; line-height: 1.6; max-width: 280px; font-weight: 300; margin: 0; }
+  .ft-intro .logo { margin-bottom: 20px; }
+  .ft-bottom {
+    padding-top: 28px;
+    display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  /* —— Modal —— */
+  .modal-root {
+    position: fixed; inset: 0; z-index: 100;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .modal-root.open { display: flex; }
+  .modal-scrim {
+    position: absolute; inset: 0;
+    background: rgba(8,7,6,0.78);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 240ms ease;
+  }
+  @keyframes fadeIn { from { opacity:0 } to { opacity: 1 } }
+  .modal {
+    position: relative;
+    width: min(560px, 100%);
+    max-height: 90vh; overflow: auto;
+    background: var(--bg-2);
+    border: 1px solid var(--gold-deep);
+    padding: 44px 40px 40px;
+    animation: rise 360ms cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes rise { from { opacity:0; transform: translateY(24px) } to { opacity:1; transform: translateY(0) } }
+  .modal .close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: 1px solid var(--line);
+    color: var(--text-dim);
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    font-family: var(--mono);
+    transition: all 200ms;
+  }
+  .modal .close:hover { border-color: var(--gold); color: var(--gold-2); }
+  .modal .eyebrow { margin-bottom: 18px; }
+  .modal h3 { font-size: 34px; line-height: 1; margin-bottom: 10px; }
+  .modal h3 .it { font-style: italic; color: var(--gold-2); }
+  .modal .m-sub { color: var(--text-dim); font-size: 13px; line-height: 1.55; font-weight: 300; margin: 0 0 28px; }
+  .form-grid { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  .form-grid .full { grid-column: 1 / -1; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--text-mute); text-transform: uppercase; }
+  .field input, .field select, .field textarea {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 12px 14px;
+    font-family: var(--sans); font-size: 14px;
+    border-radius: 0;
+    outline: none;
+    transition: border-color 200ms;
+    font-weight: 300;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
+  .field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(-45deg, transparent 50%, var(--gold) 50%); background-position: calc(100% - 20px) 18px, calc(100% - 14px) 18px; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px;}
+  .field textarea { resize: vertical; min-height: 80px; }
+  .m-submit { margin-top: 24px; width: 100%; justify-content: center; }
+  .m-success {
+    text-align: center;
+    padding: 40px 0 10px;
+  }
+  .m-success .check {
+    width: 64px; height: 64px; border: 1px solid var(--gold); border-radius: 50%;
+    display:grid; place-items: center; margin: 0 auto 24px;
+    color: var(--gold-2); font-size: 28px;
+  }
+  .m-success h3 { font-size: 28px; margin-bottom: 10px; }
+  .m-success p { color: var(--text-dim); font-size: 14px; font-weight: 300; }
+
+  /* —— Scroll reveal —— */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* —— Theme variants (set by Tweaks) —— */
+  body[data-palette="cream"] {
+    --bg: #F3ECDD;
+    --bg-2: #EDE4D3;
+    --bg-3: #E4D9BE;
+    --line: #C9BC9B;
+    --text: #21201C;
+    --text-dim: #55503F;
+    --text-mute: #7F7A67;
+    --gold: #8B6F2A;
+    --gold-2: #6B5519;
+    --gold-deep: #9B854D;
+  }
+  body[data-palette="vintage"] {
+    --bg: #1A0F0A;
+    --bg-2: #221510;
+    --bg-3: #2B1C14;
+    --line: #3A261B;
+    --text: #F0E2C8;
+    --text-dim: #BBA58B;
+    --text-mute: #7B6A55;
+    --gold: #C48A4A;
+    --gold-2: #E8B880;
+    --gold-deep: #7A4F22;
+  }
+  body[data-font="modern"] {
+    --serif: "Inter", sans-serif;
+    --serif-alt: "Inter", sans-serif;
+  }
+  body[data-font="modern"] h1, body[data-font="modern"] h2, body[data-font="modern"] h3, body[data-font="modern"] h4 {
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+  body[data-font="modern"] .hero-title .amp { font-style: normal; }
+  body[data-font="cormorant"] {
+    --serif: "Cormorant Garamond", Georgia, serif;
+  }
+  body[data-density="compact"] section.band { padding: 92px 0; }
+  body[data-density="compact"] .section-head { margin-bottom: 48px; }
+  body[data-density="compact"] section.hero { padding: 140px 0 80px; min-height: auto; }
+
+  body[data-accent="copper"] { --gold: #C07848; --gold-2: #DF9A6E; --gold-deep: #8A522E; }
+  body[data-accent="ivory"] { --gold: #D4C8A8; --gold-2: #EEE3BE; --gold-deep: #938763; }
+  body[data-accent="ruby"]  { --gold: #B24A3E; --gold-2: #D7786C; --gold-deep: #7A3229; }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#0D0C0A">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="400" fill="#0D0C0A"/>
+    <circle cx="200" cy="200" r="90" fill="none" stroke="#C9A962" stroke-width="2"/>
+    <circle cx="200" cy="200" r="78" fill="none" stroke="#C9A962" stroke-width="1" opacity="0.4"/>
+    <text x="200" y="234" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-style="italic" font-size="100" fill="#E3C98A">В</text>
+    <text x="200" y="310" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="18" letter-spacing="10" fill="#EDE4D3">ВАКАНО</text>
+    <text x="200" y="332" text-anchor="middle" font-family="monospace" font-size="9" letter-spacing="4" fill="#8A8274">EST. 1900 · СЫЗРАНЬ</text>
+  </svg>
+</template>
+
+<!-- HEADER -->
+<header class="site" id="site-header">
+  <div class="wrap hdr-inner">
+    <a class="logo" href="#top" aria-label="ВАКАНО">
+      <span class="logo-mark">В</span>
+      <span class="logo-text">
+        <span class="nm">ВАКАНО</span>
+        <span class="sub">ЕST. 1900 · СЫЗРАНЬ</span>
+      </span>
+    </a>
+    <nav class="primary">
+      <a href="#about">О комплексе</a>
+      <a href="#faber">Ресторан</a>
+      <a href="#yard">Двор</a>
+      <a href="#tours">Экскурсии</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="hdr-right">
+      <span class="hdr-phone">+7 (846) 000-00-00</span>
+      <button class="btn btn-primary btn-sm" data-book>Забронировать</button>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-grain"></div>
+
+  <div class="wrap hero-inner">
+    <div class="hero-meta">
+      <div class="hero-meta-left">
+        <span class="eyebrow">Культурно-гастрономический комплекс</span>
+        <div class="hero-coord">
+          <span><strong>53.16°N</strong> 48.47°E</span>
+          <span><strong>Est.</strong> MCM · 1900</span>
+          <span><strong>Ул.</strong> Дзержинского, 98</span>
+        </div>
+      </div>
+      <div class="hero-coord" style="align-self:flex-end;">
+        <span>01 — Сызрань, Самарская обл.</span>
+      </div>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="word">История,</span>
+      <span class="word"><span class="italic">гастрономия</span></span>
+      <span class="word">&amp; искусство</span>
+    </h1>
+
+    <p class="hero-sub">
+      В стенах Сызранского ликёро-водочного завода 1900 года —
+      ресторан авторской волжско-купеческой кухни, двор с фонтаном
+      и экскурсии по воссозданным подвалам.
+    </p>
+
+    <div class="hero-ctas">
+      <button class="btn btn-primary" data-book>Забронировать стол <span class="btn-arrow">→</span></button>
+      <a class="btn btn-ghost" href="#about">Узнать больше</a>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-stat"><div class="k">125<span class="it">+</span></div><div class="l">лет истории</div></div>
+      <div class="hero-stat"><div class="k">80</div><div class="l">мест в зале</div></div>
+      <div class="hero-stat"><div class="k">3</div><div class="l">формата экскурсий</div></div>
+      <div class="hero-stat"><div class="k">24<span class="it">/7</span></div><div class="l">открытый двор</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="band" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="sec-idx">§ 01 — О комплексе</div>
+        <h2>Три грани<br/><span class="italic">одного места</span></h2>
+      </div>
+      <p class="lead">
+        Пространство, в котором купеческая архитектура XIX века встречается с современной гастрономией и городской культурой. Ничего подобного в Сызрани ещё не было.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <article class="about-card">
+        <span class="about-num">I.</span>
+        <div class="about-glyph">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M9 13h.01M15 13h.01"/></svg>
+        </div>
+        <h3>История <span class="it">завода</span></h3>
+        <p>Исторические корпуса 1900 года, подвалы и воссозданные производственные помещения — сохранённые и адаптированные без потери купеческой эстетики.</p>
+      </article>
+      <article class="about-card">
+        <span class="about-num">II.</span>
+        <div class="about-glyph">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 3v10a3 3 0 0 0 6 0V3M10 3v18M16 3c2 0 3 2 3 5s-1 5-3 5v8"/></svg>
+        </div>
+        <h3>Гастрономия <span class="it">Волги</span></h3>
+        <p>Ресторан ФАБЕР — авторская волжско-купеческая кухня. Судак, стейки, пельмени, дегустационные сеты и напитки по оригинальным рецептам.</p>
+      </article>
+      <article class="about-card">
+        <span class="about-num">III.</span>
+        <div class="about-glyph">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><circle cx="12" cy="12" r="9"/><path d="M12 3c2.5 3 2.5 15 0 18M3 12h18"/></svg>
+        </div>
+        <h3>Искусство <span class="it">двора</span></h3>
+        <p>Открытая площадь с мультимедийным фонтаном, памятником Альфреду фон Вакано и арт-объектами. Фестивали, концерты, городские события.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANT -->
+<section class="band faber" id="faber">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="sec-idx">§ 02 — Ресторан</div>
+        <h2><span class="italic">ФАБЕР</span><br/>авторская кухня</h2>
+      </div>
+      <p class="lead">
+        Волжско-купеческая традиция, прочитанная современным шефом. Панорамный зал на 80 мест, открытая кухня, камерная винная комната.
+      </p>
+    </div>
+
+    <div class="faber-grid">
+      <div class="faber-vis">
+        <div class="faber-vis-inner">
+          <div class="mono">Ресторан</div>
+          <div class="big">Faber</div>
+          <div class="cap">Панорамный зал · 80 мест</div>
+        </div>
+      </div>
+
+      <div class="faber-right">
+        <h3>Меню <span class="italic">сезона</span></h3>
+        <p class="desc">Небольшой срез карты. Сезонные позиции и винную пару подбираем на месте.</p>
+
+        <ul class="menu-list">
+          <li><span class="dish">Судак <span class="it">по-купечески</span></span><span class="dots"></span><span class="price">890 ₽</span></li>
+          <li><span class="dish">Поволжский стейк</span><span class="dots"></span><span class="price">1 490 ₽</span></li>
+          <li><span class="dish">Пельмени <span class="it">волжские</span></span><span class="dots"></span><span class="price">640 ₽</span></li>
+          <li><span class="dish">Уха царская на берёзовых углях</span><span class="dots"></span><span class="price">720 ₽</span></li>
+          <li><span class="dish">Дегустация <span class="it">настоек</span> 1900</span><span class="dots"></span><span class="price">1 200 ₽</span></li>
+        </ul>
+
+        <div class="faber-meta">
+          <div><div class="l">Средний чек</div><div class="v">2 000 <span class="it">₽</span></div></div>
+          <div><div class="l">Часы работы</div><div class="v">11:00 — 23:00</div></div>
+          <div><div class="l">Залы</div><div class="v">Панорамный <span class="it">+</span> винная</div></div>
+        </div>
+
+        <div class="faber-ctas">
+          <button class="btn btn-primary" data-book data-subject="Ресторан ФАБЕР">Забронировать столик <span class="btn-arrow">→</span></button>
+          <button class="btn btn-ghost">Посмотреть меню</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YARD -->
+<section class="band" id="yard">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="sec-idx">§ 03 — Двор</div>
+        <h2>Двор <span class="italic">ВАКАНО</span><br/>открытая сцена</h2>
+      </div>
+      <p class="lead">
+        Благоустроенная историческая площадь с мультимедийным фонтаном и арт-объектами — площадка для фестивалей, концертов и городских событий.
+      </p>
+    </div>
+
+    <div class="yard-grid">
+      <div class="yard-left">
+        <div class="yard-pill"><span class="dot"></span>Вход свободный · круглый год</div>
+        <h3>Городская <span class="italic">площадь</span> нового формата</h3>
+        <p class="desc">Вечерняя подсветка, сезонные инсталляции и бесплатная программа выходного дня. От детских спектаклей до джазовых вечеров.</p>
+        <div class="faber-ctas">
+          <a class="btn btn-ghost" href="#contact">Календарь событий <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="yard-vis" aria-hidden="true">
+          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="yg" cx="50%" cy="60%" r="60%">
+                <stop offset="0%" stop-color="#C9A962" stop-opacity="0.22"/>
+                <stop offset="60%" stop-color="#C9A962" stop-opacity="0.04"/>
+                <stop offset="100%" stop-color="#0D0C0A" stop-opacity="0"/>
+              </radialGradient>
+              <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#C9A962" stroke-opacity="0.08" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="500" height="400" fill="#14120F"/>
+            <rect width="500" height="400" fill="url(#hatch)"/>
+            <rect width="500" height="400" fill="url(#yg)"/>
+            <!-- Historic building silhouette -->
+            <g stroke="#C9A962" stroke-opacity="0.6" fill="none" stroke-width="1">
+              <rect x="60" y="90" width="380" height="220"/>
+              <line x1="60" y1="150" x2="440" y2="150"/>
+              <line x1="60" y1="260" x2="440" y2="260"/>
+              <!-- Windows row 1 -->
+              <g>
+                <rect x="90" y="110" width="26" height="32"/>
+                <rect x="140" y="110" width="26" height="32"/>
+                <rect x="190" y="110" width="26" height="32"/>
+                <rect x="240" y="110" width="26" height="32"/>
+                <rect x="290" y="110" width="26" height="32"/>
+                <rect x="340" y="110" width="26" height="32"/>
+                <rect x="390" y="110" width="26" height="32"/>
+              </g>
+              <!-- Windows row 2 -->
+              <g>
+                <rect x="90" y="170" width="26" height="76"/>
+                <rect x="140" y="170" width="26" height="76"/>
+                <rect x="190" y="170" width="26" height="76"/>
+                <rect x="240" y="170" width="26" height="76"/>
+                <rect x="290" y="170" width="26" height="76"/>
+                <rect x="340" y="170" width="26" height="76"/>
+                <rect x="390" y="170" width="26" height="76"/>
+              </g>
+              <!-- Pediment -->
+              <path d="M160 90 L250 55 L340 90"/>
+              <rect x="240" y="70" width="20" height="20"/>
+              <!-- Doors -->
+              <rect x="225" y="260" width="50" height="50" stroke-width="1.25"/>
+              <!-- Year plaque -->
+              <text x="250" y="78" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="11" fill="#C9A962" fill-opacity="0.9">MCM</text>
+            </g>
+            <!-- Fountain + carriage silhouettes -->
+            <g stroke="#C9A962" stroke-opacity="0.55" fill="none">
+              <circle cx="250" cy="355" r="38"/>
+              <circle cx="250" cy="355" r="22"/>
+              <circle cx="250" cy="355" r="4" fill="#C9A962" fill-opacity="0.7"/>
+              <!-- water droplets -->
+              <line x1="250" y1="355" x2="250" y2="328"/>
+              <line x1="240" y1="345" x2="234" y2="333"/>
+              <line x1="260" y1="345" x2="266" y2="333"/>
+            </g>
+            <!-- Tree silhouettes -->
+            <g stroke="#C9A962" stroke-opacity="0.3" fill="none">
+              <circle cx="30" cy="340" r="22"/>
+              <line x1="30" y1="340" x2="30" y2="380"/>
+              <circle cx="470" cy="340" r="22"/>
+              <line x1="470" y1="340" x2="470" y2="380"/>
+            </g>
+            <!-- label -->
+            <text x="30" y="30" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">ИСТОРИЧЕСКИЙ ФАСАД · 1900</text>
+            <text x="470" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">ДВОР ВАКАНО</text>
+          </svg>
+        </div>
+
+        <div class="yard-list" style="margin-top: 28px;">
+          <div class="item">
+            <div class="num">01</div>
+            <div>
+              <div class="name">Мультимедийный <span class="it">фонтан</span></div>
+            </div>
+            <div class="desc-s">вечерняя программа</div>
+          </div>
+          <div class="item">
+            <div class="num">02</div>
+            <div>
+              <div class="name">Памятник <span class="it">А. фон Вакано</span></div>
+            </div>
+            <div class="desc-s">центр двора</div>
+          </div>
+          <div class="item">
+            <div class="num">03</div>
+            <div>
+              <div class="name">Золотая <span class="it">карета</span></div>
+            </div>
+            <div class="desc-s">арт-объект</div>
+          </div>
+          <div class="item">
+            <div class="num">04</div>
+            <div>
+              <div class="name">Сезонная <span class="it">сцена</span></div>
+            </div>
+            <div class="desc-s">концерты · фестивали</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section class="band tours" id="tours">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="sec-idx">§ 04 — Экскурсии</div>
+        <h2>Экскурсии<br/><span class="italic">по истории</span></h2>
+      </div>
+      <p class="lead">
+        Подвалы завода, цеха, воссозданные производственные помещения и напитки по оригинальным рецептам 1900-х. Три формата на выбор.
+      </p>
+    </div>
+
+    <div class="tours-grid">
+      <article class="tour">
+        <div class="t-num">Формат 01</div>
+        <h4>Групповая <span class="it">экскурсия</span></h4>
+        <p class="t-desc">Классический маршрут по историческим помещениям завода. Гид рассказывает о династии Вакано, технологии и городе.</p>
+        <div class="t-price">
+          <div class="price-v">500 <span class="it">₽</span></div>
+          <div class="price-l">с человека · ~60 мин</div>
+        </div>
+        <button class="tour-btn" data-book data-subject="Групповая экскурсия">Забронировать →</button>
+      </article>
+      <article class="tour">
+        <div class="t-num">Формат 02</div>
+        <h4>Индивидуальная</h4>
+        <p class="t-desc">Персональный гид, гибкий маршрут и глубокое погружение. Доступ в закрытые помещения и архивные документы.</p>
+        <div class="t-price">
+          <div class="price-v">990 <span class="it">₽</span></div>
+          <div class="price-l">с человека · ~90 мин</div>
+        </div>
+        <button class="tour-btn" data-book data-subject="Индивидуальная экскурсия">Забронировать →</button>
+      </article>
+      <article class="tour">
+        <div class="t-num">Формат 03</div>
+        <h4>Экскурсия <span class="it">+ дегустация</span></h4>
+        <p class="t-desc">Маршрут завершается в дегустационной комнате. Пять позиций, воссозданных по архивным рецептам, с гастрономическим сопровождением.</p>
+        <div class="t-price">
+          <div class="price-v">800 <span class="it">₽</span></div>
+          <div class="price-l">с человека · ~120 мин</div>
+        </div>
+        <button class="tour-btn" data-book data-subject="Экскурсия + дегустация">Забронировать →</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="band" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="sec-idx">§ 05 — Контакты</div>
+        <h2>Найти<br/><span class="italic">и забронировать</span></h2>
+      </div>
+      <p class="lead">
+        Мы открыты ежедневно. Бронирование столика и экскурсий — по телефону, WhatsApp или через форму на сайте.
+      </p>
+    </div>
+
+    <div class="ct-grid">
+      <div class="ct-info">
+        <dl>
+          <div class="row"><dt>Адрес</dt><dd>ул. Дзержинского, <span class="it">98</span><br/><span style="font-size:14px; color: var(--text-dim); font-family: var(--sans); font-weight:300;">г. Сызрань, Самарская область</span></dd></div>
+          <div class="row"><dt>Телефон</dt><dd><a href="tel:+78460000000">+7 (846) 000-00-00</a></dd></div>
+          <div class="row"><dt>E-mail</dt><dd><a href="mailto:hello@vakano.ru">hello@vakano.ru</a></dd></div>
+          <div class="row"><dt>Часы работы</dt><dd>Пн — Вс · <span class="it">11:00 — 23:00</span></dd></div>
+          <div class="row"><dt>Двор</dt><dd>Круглосуточно, <span class="it">вход свободный</span></dd></div>
+        </dl>
+        <div class="ctas">
+          <button class="btn btn-primary" data-book>Забронировать <span class="btn-arrow">→</span></button>
+          <a class="btn btn-ghost" href="https://wa.me/78460000000" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="ct-map" aria-hidden="true">
+        <svg viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <pattern id="mapg" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2A251D" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="500" height="600" fill="#14120F"/>
+          <rect width="500" height="600" fill="url(#mapg)"/>
+          <!-- River -->
+          <path d="M -20 440 Q 120 400 240 450 T 520 430 L 520 620 L -20 620 Z" fill="#0B1418" fill-opacity="0.7" stroke="#2A4148" stroke-width="0.8"/>
+          <text x="80" y="500" font-family="Playfair Display" font-style="italic" font-size="16" fill="#3A5560" letter-spacing="2">р. Волга</text>
+          <!-- Streets -->
+          <g stroke="#3A3228" stroke-width="1.2" fill="none" opacity="0.9">
+            <line x1="0" y1="120" x2="500" y2="140"/>
+            <line x1="0" y1="220" x2="500" y2="210"/>
+            <line x1="0" y1="330" x2="500" y2="360"/>
+            <line x1="120" y1="0" x2="140" y2="440"/>
+            <line x1="260" y1="0" x2="280" y2="440"/>
+            <line x1="380" y1="0" x2="390" y2="440"/>
+          </g>
+          <g stroke="#2A251D" stroke-width="0.6" fill="none">
+            <line x1="0" y1="60" x2="500" y2="70"/>
+            <line x1="0" y1="180" x2="500" y2="175"/>
+            <line x1="0" y1="270" x2="500" y2="285"/>
+            <line x1="60" y1="0" x2="70" y2="440"/>
+            <line x1="200" y1="0" x2="215" y2="440"/>
+            <line x1="330" y1="0" x2="340" y2="440"/>
+            <line x1="440" y1="0" x2="445" y2="440"/>
+          </g>
+          <!-- Blocks -->
+          <g fill="#1C1915" fill-opacity="0.6" stroke="#2A251D" stroke-width="0.5">
+            <rect x="150" y="230" width="100" height="90"/>
+            <rect x="290" y="230" width="80" height="90"/>
+            <rect x="150" y="150" width="100" height="60"/>
+            <rect x="290" y="150" width="80" height="60"/>
+          </g>
+          <!-- Pin -->
+          <g transform="translate(250 280)">
+            <circle r="40" fill="#C9A962" fill-opacity="0.08"/>
+            <circle r="26" fill="#C9A962" fill-opacity="0.14"/>
+            <circle r="12" fill="#0D0C0A" stroke="#C9A962" stroke-width="1.5"/>
+            <circle r="4" fill="#E3C98A"/>
+          </g>
+          <text x="20" y="30" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">53.16°N · 48.47°E</text>
+          <text x="480" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">СЫЗРАНЬ</text>
+        </svg>
+        <div class="pin-label">ул. Дзержинского, 98</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-block ft-intro">
+        <a class="logo" href="#top">
+          <span class="logo-mark">В</span>
+          <span class="logo-text">
+            <span class="nm">ВАКАНО</span>
+            <span class="sub">ЕST. 1900 · СЫЗРАНЬ</span>
+          </span>
+        </a>
+        <p style="margin-top: 20px;">Культурно-гастрономический комплекс на территории исторического ликёро-водочного завода.</p>
+      </div>
+      <div class="ft-block">
+        <h5>Навигация</h5>
+        <a href="#about">О комплексе</a>
+        <a href="#faber">Ресторан ФАБЕР</a>
+        <a href="#yard">Двор ВАКАНО</a>
+        <a href="#tours">Экскурсии</a>
+        <a href="#contact">Контакты</a>
+      </div>
+      <div class="ft-block">
+        <h5>Связаться</h5>
+        <a href="tel:+78460000000">+7 (846) 000-00-00</a>
+        <a href="mailto:hello@vakano.ru">hello@vakano.ru</a>
+        <a href="https://wa.me/78460000000">WhatsApp</a>
+        <a href="#">ул. Дзержинского, 98</a>
+      </div>
+      <div class="ft-block">
+        <h5>Соцсети</h5>
+        <a href="#">VK</a>
+        <a href="#">Telegram</a>
+        <a href="#">Instagram</a>
+        <a href="#">Youtube</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 ВАКАНО · Все права защищены</span>
+      <span>Сызрань · Самарская область · MCM</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div class="modal-root" id="modal-root" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-scrim" data-close></div>
+  <div class="modal">
+    <button class="close" data-close aria-label="Закрыть">✕</button>
+    <div id="modal-form-view">
+      <span class="eyebrow">Бронирование</span>
+      <h3>Забронировать <span class="it">визит</span></h3>
+      <p class="m-sub">Оставьте контакты — перезвоним в течение 15 минут и подтвердим бронь. Обязательные поля отмечены звёздочкой.</p>
+      <form id="booking-form" autocomplete="off">
+        <div class="form-grid">
+          <div class="field full">
+            <label for="f-subject">Что бронируем *</label>
+            <select id="f-subject" name="subject" required>
+              <option>Столик в ресторане ФАБЕР</option>
+              <option>Групповая экскурсия</option>
+              <option>Индивидуальная экскурсия</option>
+              <option>Экскурсия + дегустация</option>
+              <option>Корпоративное мероприятие</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-name">Имя *</label><input id="f-name" name="name" type="text" required placeholder="Иван"/></div>
+          <div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__"/></div>
+          <div class="field"><label for="f-date">Дата *</label><input id="f-date" name="date" type="date" required/></div>
+          <div class="field"><label for="f-time">Время</label><input id="f-time" name="time" type="time" value="19:00"/></div>
+          <div class="field full"><label for="f-guests">Гостей</label><input id="f-guests" name="guests" type="number" min="1" max="30" value="2"/></div>
+          <div class="field full"><label for="f-note">Пожелания</label><textarea id="f-note" name="note" placeholder="Например: тихий столик у окна"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary m-submit">Отправить заявку <span class="btn-arrow">→</span></button>
+      </form>
+    </div>
+    <div id="modal-success-view" class="m-success" style="display:none;">
+      <div class="check">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <span class="eyebrow no-line" style="display:inline-flex; margin-bottom: 16px;">Заявка принята</span>
+      <h3>Спасибо, <span class="it">ждём</span>.</h3>
+      <p>Мы свяжемся с вами в ближайшие 15 минут для подтверждения брони.</p>
+    </div>
+  </div>
+</div>
+
+<!-- React + Babel for Tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<!-- Tweaks panel mount -->
+<div id="tweaks-mount"></div>
+<script type="text/babel">
+  const VakanoTweakDefaults = /*EDITMODE-BEGIN*/{
+    "palette": "dark",
+    "accent": "gold",
+    "font": "playfair",
+    "density": "comfortable"
+  }/*EDITMODE-END*/;
+
+  function VakanoTweaks() {
+    const [t, setT] = useTweaks(VakanoTweakDefaults);
+    React.useEffect(() => {
+      document.body.dataset.palette = t.palette;
+      document.body.dataset.accent = t.accent;
+      document.body.dataset.font = t.font;
+      document.body.dataset.density = t.density;
+    }, [t]);
+    return (
+      <TweaksPanel title="Tweaks · ВАКАНО">
+        <TweakSection title="Палитра">
+          <TweakRadio
+            label="Фон"
+            value={t.palette}
+            options={[
+              { value: "dark", label: "Уголь" },
+              { value: "vintage", label: "Винтаж" },
+              { value: "cream", label: "Крем" },
+            ]}
+            onChange={v => setT({ palette: v })}
+          />
+          <TweakRadio
+            label="Акцент"
+            value={t.accent}
+            options={[
+              { value: "gold", label: "Золото" },
+              { value: "copper", label: "Медь" },
+              { value: "ivory", label: "Слоновая кость" },
+              { value: "ruby", label: "Рубин" },
+            ]}
+            onChange={v => setT({ accent: v })}
+          />
+        </TweakSection>
+        <TweakSection title="Типографика">
+          <TweakRadio
+            label="Шрифт заголовков"
+            value={t.font}
+            options={[
+              { value: "playfair", label: "Playfair (классика)" },
+              { value: "cormorant", label: "Cormorant (купечество)" },
+              { value: "modern", label: "Sans (столичный)" },
+            ]}
+            onChange={v => setT({ font: v })}
+          />
+        </TweakSection>
+        <TweakSection title="Плотность">
+          <TweakRadio
+            label="Отступы"
+            value={t.density}
+            options={[
+              { value: "comfortable", label: "Просторно" },
+              { value: "compact", label: "Компактно" },
+            ]}
+            onChange={v => setT({ density: v })}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+  const root = ReactDOM.createRoot(document.getElementById("tweaks-mount"));
+  root.render(<VakanoTweaks />);
+</script>
+
+<!-- Interaction script -->
+<script>
+  // Header shadow on scroll
+  const hdr = document.getElementById("site-header");
+  const onScroll = () => {
+    if (window.scrollY > 20) hdr.classList.add("scrolled");
+    else hdr.classList.remove("scrolled");
+  };
+  document.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Modal
+  const modalRoot = document.getElementById("modal-root");
+  const formView = document.getElementById("modal-form-view");
+  const successView = document.getElementById("modal-success-view");
+  const form = document.getElementById("booking-form");
+  const subjectSel = document.getElementById("f-subject");
+
+  function openModal(subject) {
+    if (subject) {
+      const opts = Array.from(subjectSel.options);
+      const match = opts.find(o => o.value === subject || o.textContent === subject);
+      if (match) subjectSel.value = match.value;
+      else {
+        const o = document.createElement("option");
+        o.textContent = subject;
+        subjectSel.prepend(o);
+        subjectSel.value = o.value;
+      }
+    }
+    formView.style.display = "";
+    successView.style.display = "none";
+    modalRoot.classList.add("open");
+    modalRoot.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal() {
+    modalRoot.classList.remove("open");
+    modalRoot.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(() => form.reset(), 200);
+  }
+  document.querySelectorAll("[data-book]").forEach(b => {
+    b.addEventListener("click", () => openModal(b.dataset.subject));
+  });
+  document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", closeModal));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    formView.style.display = "none";
+    successView.style.display = "block";
+    setTimeout(() => closeModal(), 3200);
+  });
+
+  // Reveal-on-scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("in");
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll("section.band > .wrap > *, .hero-inner > *, .tour, .about-card").forEach((el, i) => {
+    el.classList.add("reveal");
+    el.style.transitionDelay = (i % 6) * 40 + "ms";
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
