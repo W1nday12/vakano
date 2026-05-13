@@ -425,51 +425,126 @@
   }
   @media (max-width: 980px) { .faber-grid { grid-template-columns: 1fr; gap: 48px; } }
   .faber-vis {
-    aspect-ratio: 4 / 5;
     background:
       repeating-linear-gradient(135deg, rgba(201,169,98,0.06) 0 2px, transparent 2px 14px),
       linear-gradient(180deg, #1A1713, #0E0C0A);
     border: 1px solid var(--line);
     position: relative;
-    display: grid;
-    place-items: center;
     overflow: hidden;
   }
   .faber-vis::before {
     content:"";
-    position:absolute; inset: 20px;
+    position:absolute; inset: 14px;
     border: 1px solid rgba(201,169,98,0.18);
     pointer-events: none;
   }
-  .faber-vis-inner {
-    text-align: center;
-    padding: 40px;
+
+  /* —— Faber full menu (left card) —— */
+  .faber-menu {
+    padding: 44px 40px 40px;
   }
-  .faber-vis .mono {
+  @media (max-width: 600px) { .faber-menu { padding: 32px 22px 28px; } }
+  .faber-menu .m-head {
+    text-align: center;
+    padding-bottom: 22px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .faber-menu .m-head::after {
+    content:"";
+    position:absolute; left: 18%; right: 18%; bottom: 0;
+    height: 3px;
+    border-top: 1px solid var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+  }
+  .faber-menu .m-eyebrow {
     font-family: var(--mono);
     font-size: 10px;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.28em;
     color: var(--text-mute);
     text-transform: uppercase;
-    margin-bottom: 18px;
   }
-  .faber-vis .big {
+  .faber-menu .m-eyebrow::before,
+  .faber-menu .m-eyebrow::after { content: "— "; color: var(--gold-deep); }
+  .faber-menu .m-eyebrow::after { content: " —"; }
+  .faber-menu .m-name {
     font-family: var(--serif);
     font-style: italic;
-    font-size: clamp(64px, 9vw, 128px);
+    font-size: clamp(52px, 7vw, 84px);
     color: var(--gold-2);
     line-height: 1;
-    letter-spacing: -0.02em;
+    margin: 10px 0 8px;
+    letter-spacing: -0.01em;
   }
-  .faber-vis .cap {
-    margin-top: 24px;
+  .faber-menu .m-label {
     font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--text-mute);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--text-dim);
+    text-transform: uppercase;
   }
-  .faber-vis .cap::before, .faber-vis .cap::after { content:"— "; color: var(--gold-deep);}
-  .faber-vis .cap::after { content:" —"; }
+  .faber-menu .m-cat {
+    margin-top: 22px;
+  }
+  .faber-menu .m-cat-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold-2);
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 0.005em;
+  }
+  .faber-menu .m-cat-title::before {
+    content: "◆  ◆  ◆";
+    display: block;
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    color: var(--gold-deep);
+    margin-bottom: 8px;
+  }
+  .faber-menu .m-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .faber-menu .m-items li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px dotted rgba(201,169,98,0.14);
+  }
+  .faber-menu .m-items li:last-child { border-bottom: none; }
+  .faber-menu .m-items .d {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .faber-menu .m-items .d .it {
+    font-style: italic;
+    color: var(--gold-2);
+  }
+  .faber-menu .m-items .d .hint {
+    font-family: var(--sans);
+    font-style: italic;
+    font-size: 10.5px;
+    color: var(--text-mute);
+    font-weight: 300;
+    margin-left: 4px;
+  }
+  .faber-menu .m-items .p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
   .faber-right h3 {
     font-size: clamp(36px, 4.5vw, 56px);
     line-height: 1;
@@ -590,15 +665,6 @@
   .yard-list .name .it { font-style: italic; color: var(--gold-2); }
   .yard-list .desc-s { font-family: var(--mono); font-size: 11px; color: var(--text-mute); letter-spacing: 0.06em; }
 
-  .yard-vis {
-    position: relative;
-    aspect-ratio: 5 / 4;
-    background: var(--bg-3);
-    border: 1px solid var(--line);
-    overflow: hidden;
-  }
-  .yard-vis svg { display: block; width: 100%; height: 100%; }
-
   /* —— Tours —— */
   section.tours {
     background: var(--bg-2);
@@ -667,11 +733,11 @@
   /* —— Contact —— */
   .ct-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 72px;
+    grid-template-columns: 1fr;
+    gap: 48px;
     align-items: start;
+    max-width: 760px;
   }
-  @media (max-width: 980px) { .ct-grid { grid-template-columns: 1fr; gap: 48px; } }
   .ct-info dl { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
   .ct-info .row { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
   .ct-info dt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--text-mute); text-transform: uppercase; }
@@ -680,29 +746,6 @@
   .ct-info dd a { border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color 200ms; }
   .ct-info dd a:hover { border-bottom-color: var(--gold); }
   .ct-info .ctas { display:flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
-
-  .ct-map {
-    position: relative;
-    aspect-ratio: 5 / 6;
-    background: var(--bg-3);
-    border: 1px solid var(--line);
-    overflow: hidden;
-  }
-  .ct-map svg { width: 100%; height: 100%; display:block; }
-  .ct-map .pin-label {
-    position: absolute;
-    left: 50%; top: 50%;
-    transform: translate(-50%, calc(-50% + 28px));
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    color: var(--gold-2);
-    background: rgba(13,12,10,0.9);
-    padding: 6px 10px;
-    border: 1px solid var(--gold-deep);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
 
   /* —— Footer —— */
   footer.site {
@@ -997,11 +1040,81 @@
     </div>
 
     <div class="faber-grid">
-      <div class="faber-vis">
-        <div class="faber-vis-inner">
-          <div class="mono">Ресторан</div>
-          <div class="big">Faber</div>
-          <div class="cap">Панорамный зал · 80 мест</div>
+      <div class="faber-vis faber-menu">
+        <div class="m-head">
+          <div class="m-eyebrow">Ресторан</div>
+          <div class="m-name">Фабер</div>
+          <div class="m-label">М Е Н Ю</div>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Горячие блюда</div>
+          <ul class="m-items">
+            <li><span class="d">Судак <span class="it">по-купечески</span></span><span class="p">890 ₽</span></li>
+            <li><span class="d">Поволжский стейк <span class="hint">говядина</span></span><span class="p">1 690 ₽</span></li>
+            <li><span class="d">Медальоны <span class="it">«Мецената»</span><span class="hint">говядина</span></span><span class="p">1 450 ₽</span></li>
+            <li><span class="d">Медальоны <span class="it">«Мецената»</span><span class="hint">свинина</span></span><span class="p">1 090 ₽</span></li>
+            <li><span class="d">Стерлядь <span class="it">на пару</span></span><span class="p">1 190 ₽</span></li>
+            <li><span class="d">Пельмени <span class="it">волжские</span><span class="hint">свинина · 12 шт.</span></span><span class="p">590 ₽</span></li>
+            <li><span class="d">Пельмени <span class="it">волжские</span><span class="hint">лосось · 12 шт.</span></span><span class="p">690 ₽</span></li>
+            <li><span class="d">Пельмени <span class="it">волжские</span><span class="hint">судак · 12 шт.</span></span><span class="p">650 ₽</span></li>
+          </ul>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Супы</div>
+          <ul class="m-items">
+            <li><span class="d">Борщ <span class="it">купеческий</span></span><span class="p">490 ₽</span></li>
+            <li><span class="d">Уха <span class="it">из стерляди</span></span><span class="p">590 ₽</span></li>
+          </ul>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Салаты</div>
+          <ul class="m-items">
+            <li><span class="d">Салат <span class="it">«Фабер»</span></span><span class="p">490 ₽</span></li>
+            <li><span class="d">Судак <span class="hint">с картофелем</span></span><span class="p">470 ₽</span></li>
+          </ul>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Закуски</div>
+          <ul class="m-items">
+            <li><span class="d">Расстегай <span class="hint">с рыбой</span></span><span class="p">450 ₽</span></li>
+            <li><span class="d">Раки <span class="it">в пиве</span></span><span class="p">720 ₽</span></li>
+            <li><span class="d">Ассорти <span class="it">«Уездное»</span></span><span class="p">490 ₽</span></li>
+          </ul>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Гарниры</div>
+          <ul class="m-items">
+            <li><span class="d">Печёный <span class="it">картофель</span></span><span class="p">250 ₽</span></li>
+            <li><span class="d">Рис <span class="hint">с овощами</span></span><span class="p">220 ₽</span></li>
+            <li><span class="d">Овощи <span class="it">гриль</span></span><span class="p">320 ₽</span></li>
+          </ul>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Напитки</div>
+          <ul class="m-items">
+            <li><span class="d">Лимонад <span class="it">«1900»</span><span class="hint">цитрус</span></span><span class="p">240 ₽</span></li>
+            <li><span class="d">Лимонад <span class="it">«1900»</span><span class="hint">лесная ягода</span></span><span class="p">250 ₽</span></li>
+            <li><span class="d">Лимонад <span class="it">«1900»</span><span class="hint">яблоко-карамель</span></span><span class="p">250 ₽</span></li>
+            <li><span class="d">Кофе <span class="hint">эспрессо · американо · капучино</span></span><span class="p">250 ₽</span></li>
+            <li><span class="d">Водка <span class="it">«Золотая карета»</span><span class="hint">50 мл</span></span><span class="p">250 ₽</span></li>
+            <li><span class="d">Настойка <span class="it">«Вакано»</span><span class="hint">50 мл</span></span><span class="p">270 ₽</span></li>
+            <li><span class="d">Коньяк <span class="hint">российский · 50 мл</span></span><span class="p">400 ₽</span></li>
+            <li><span class="d"><span class="it">«Абрау-Дюрсо»</span><span class="hint">150 мл · игристое</span></span><span class="p">400 ₽</span></li>
+          </ul>
+        </div>
+
+        <div class="m-cat">
+          <div class="m-cat-title">Десерты</div>
+          <ul class="m-items">
+            <li><span class="d">Десерт <span class="it">«Карета»</span></span><span class="p">450 ₽</span></li>
+            <li><span class="d">Запечённое яблоко <span class="hint">в меду</span></span><span class="p">290 ₽</span></li>
+          </ul>
         </div>
       </div>
 
@@ -1056,78 +1169,7 @@
       </div>
 
       <div>
-        <div class="yard-vis" aria-hidden="true">
-          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <radialGradient id="yg" cx="50%" cy="60%" r="60%">
-                <stop offset="0%" stop-color="#C9A962" stop-opacity="0.22"/>
-                <stop offset="60%" stop-color="#C9A962" stop-opacity="0.04"/>
-                <stop offset="100%" stop-color="#0D0C0A" stop-opacity="0"/>
-              </radialGradient>
-              <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="10" stroke="#C9A962" stroke-opacity="0.08" stroke-width="1"/>
-              </pattern>
-            </defs>
-            <rect width="500" height="400" fill="#14120F"/>
-            <rect width="500" height="400" fill="url(#hatch)"/>
-            <rect width="500" height="400" fill="url(#yg)"/>
-            <!-- Historic building silhouette -->
-            <g stroke="#C9A962" stroke-opacity="0.6" fill="none" stroke-width="1">
-              <rect x="60" y="90" width="380" height="220"/>
-              <line x1="60" y1="150" x2="440" y2="150"/>
-              <line x1="60" y1="260" x2="440" y2="260"/>
-              <!-- Windows row 1 -->
-              <g>
-                <rect x="90" y="110" width="26" height="32"/>
-                <rect x="140" y="110" width="26" height="32"/>
-                <rect x="190" y="110" width="26" height="32"/>
-                <rect x="240" y="110" width="26" height="32"/>
-                <rect x="290" y="110" width="26" height="32"/>
-                <rect x="340" y="110" width="26" height="32"/>
-                <rect x="390" y="110" width="26" height="32"/>
-              </g>
-              <!-- Windows row 2 -->
-              <g>
-                <rect x="90" y="170" width="26" height="76"/>
-                <rect x="140" y="170" width="26" height="76"/>
-                <rect x="190" y="170" width="26" height="76"/>
-                <rect x="240" y="170" width="26" height="76"/>
-                <rect x="290" y="170" width="26" height="76"/>
-                <rect x="340" y="170" width="26" height="76"/>
-                <rect x="390" y="170" width="26" height="76"/>
-              </g>
-              <!-- Pediment -->
-              <path d="M160 90 L250 55 L340 90"/>
-              <rect x="240" y="70" width="20" height="20"/>
-              <!-- Doors -->
-              <rect x="225" y="260" width="50" height="50" stroke-width="1.25"/>
-              <!-- Year plaque -->
-              <text x="250" y="78" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="11" fill="#C9A962" fill-opacity="0.9">MCM</text>
-            </g>
-            <!-- Fountain + carriage silhouettes -->
-            <g stroke="#C9A962" stroke-opacity="0.55" fill="none">
-              <circle cx="250" cy="355" r="38"/>
-              <circle cx="250" cy="355" r="22"/>
-              <circle cx="250" cy="355" r="4" fill="#C9A962" fill-opacity="0.7"/>
-              <!-- water droplets -->
-              <line x1="250" y1="355" x2="250" y2="328"/>
-              <line x1="240" y1="345" x2="234" y2="333"/>
-              <line x1="260" y1="345" x2="266" y2="333"/>
-            </g>
-            <!-- Tree silhouettes -->
-            <g stroke="#C9A962" stroke-opacity="0.3" fill="none">
-              <circle cx="30" cy="340" r="22"/>
-              <line x1="30" y1="340" x2="30" y2="380"/>
-              <circle cx="470" cy="340" r="22"/>
-              <line x1="470" y1="340" x2="470" y2="380"/>
-            </g>
-            <!-- label -->
-            <text x="30" y="30" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">ИСТОРИЧЕСКИЙ ФАСАД · 1900</text>
-            <text x="470" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">ДВОР ВАКАНО</text>
-          </svg>
-        </div>
-
-        <div class="yard-list" style="margin-top: 28px;">
+        <div class="yard-list">
           <div class="item">
             <div class="num">01</div>
             <div>
@@ -1236,56 +1278,6 @@
           <button class="btn btn-primary" data-book>Забронировать <span class="btn-arrow">→</span></button>
           <a class="btn btn-ghost" href="https://wa.me/78460000000" target="_blank" rel="noopener">WhatsApp</a>
         </div>
-      </div>
-
-      <div class="ct-map" aria-hidden="true">
-        <svg viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <pattern id="mapg" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2A251D" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="500" height="600" fill="#14120F"/>
-          <rect width="500" height="600" fill="url(#mapg)"/>
-          <!-- River -->
-          <path d="M -20 440 Q 120 400 240 450 T 520 430 L 520 620 L -20 620 Z" fill="#0B1418" fill-opacity="0.7" stroke="#2A4148" stroke-width="0.8"/>
-          <text x="80" y="500" font-family="Playfair Display" font-style="italic" font-size="16" fill="#3A5560" letter-spacing="2">р. Волга</text>
-          <!-- Streets -->
-          <g stroke="#3A3228" stroke-width="1.2" fill="none" opacity="0.9">
-            <line x1="0" y1="120" x2="500" y2="140"/>
-            <line x1="0" y1="220" x2="500" y2="210"/>
-            <line x1="0" y1="330" x2="500" y2="360"/>
-            <line x1="120" y1="0" x2="140" y2="440"/>
-            <line x1="260" y1="0" x2="280" y2="440"/>
-            <line x1="380" y1="0" x2="390" y2="440"/>
-          </g>
-          <g stroke="#2A251D" stroke-width="0.6" fill="none">
-            <line x1="0" y1="60" x2="500" y2="70"/>
-            <line x1="0" y1="180" x2="500" y2="175"/>
-            <line x1="0" y1="270" x2="500" y2="285"/>
-            <line x1="60" y1="0" x2="70" y2="440"/>
-            <line x1="200" y1="0" x2="215" y2="440"/>
-            <line x1="330" y1="0" x2="340" y2="440"/>
-            <line x1="440" y1="0" x2="445" y2="440"/>
-          </g>
-          <!-- Blocks -->
-          <g fill="#1C1915" fill-opacity="0.6" stroke="#2A251D" stroke-width="0.5">
-            <rect x="150" y="230" width="100" height="90"/>
-            <rect x="290" y="230" width="80" height="90"/>
-            <rect x="150" y="150" width="100" height="60"/>
-            <rect x="290" y="150" width="80" height="60"/>
-          </g>
-          <!-- Pin -->
-          <g transform="translate(250 280)">
-            <circle r="40" fill="#C9A962" fill-opacity="0.08"/>
-            <circle r="26" fill="#C9A962" fill-opacity="0.14"/>
-            <circle r="12" fill="#0D0C0A" stroke="#C9A962" stroke-width="1.5"/>
-            <circle r="4" fill="#E3C98A"/>
-          </g>
-          <text x="20" y="30" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">53.16°N · 48.47°E</text>
-          <text x="480" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#8A8274">СЫЗРАНЬ</text>
-        </svg>
-        <div class="pin-label">ул. Дзержинского, 98</div>
       </div>
     </div>
   </div>
